@@ -1,0 +1,16 @@
+<testsuites name="jest tests" tests="6" failures="0" time="9.679">
+  <testsuite name="LeaderBoard" errors="0" failures="0" skipped="0" timestamp="2020-12-10T06:36:09" time="9.679" tests="6">
+    <testcase classname="LeaderBoard should render the table and buttons" name="LeaderBoard should render the table and buttons" time="0.062">
+    </testcase>
+    <testcase classname="LeaderBoard should Navigate to Correct Route on button click" name="LeaderBoard should Navigate to Correct Route on button click" time="0.081">
+    </testcase>
+    <testcase classname="LeaderBoard should Sort by Rank" name="LeaderBoard should Sort by Rank" time="0.068">
+    </testcase>
+    <testcase classname="LeaderBoard should Sort by Name" name="LeaderBoard should Sort by Name" time="0.055">
+    </testcase>
+    <testcase classname="LeaderBoard should Sort by Points" name="LeaderBoard should Sort by Points" time="0.048">
+    </testcase>
+    <testcase classname="LeaderBoard should Sort by Age" name="LeaderBoard should Sort by Age" time="4.754">
+    </testcase>
+  </testsuite>
+</testsuites>

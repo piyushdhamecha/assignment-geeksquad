@@ -1,42 +1,61 @@
 import React from 'react';
-import { response } from '../response';
+import { Switch, Route, withRouter } from 'react-router-dom'
 
-const index = 0;
+import LeaderBoardTable from './LeaderBoardTable'
+
+export const ROUTE_BUTTONS = [
+  {
+    id: 'rank',
+    name: 'Rank',
+    type: 'number',
+  },
+  {
+    id: 'name',
+    name: 'Name',
+    type: 'string',
+  },
+  {
+    id: 'points',
+    name: 'Points',
+    type: 'number',
+  },
+  {
+    id: 'age',
+    name: 'Age',
+    type: 'number',
+  },
+]
 
 function LeaderBoard(props) {
-	const { rank, name, points, age} = response.list[index];
+	const handleButtonClick = (e) => {
+		const { history } = props
+		const dataTestId = e.target.dataset.testid
+		const routeName = dataTestId.split('-')[1]
+
+		history.push(`/${routeName}`)
+	}
+
 	return (
-		<div className="text-center mt-50">
-			<div>
-				<div>
-					<button data-testid="route-rank" className='outlined' type="button">Rank</button>
-					<button data-testid="route-name" className='outlined' type="button">Name</button>
-					<button data-testid="route-points" className='outlined' type="button">Points</button>
-					<button data-testid="route-age" className='outlined' type="button">Age</button>
-				</div>
-			</div>
-			<div className="card mx-auto pb-20 mb-30" style={{ width: '50%' }}>
-				<table className="mt-50" data-testid="app-table">
-					<thead>
-						<tr>
-							<th>Rank</th>
-							<th>Name</th>
-							<th className="numeric">Points</th>
-							<th className="numeric">Age</th>
-						</tr>
-					</thead>
-					<tbody data-testid="app-tbody">
-						<tr key={rank}>
-							<td data-testid={`rank-${index}`}>{rank}</td>
-							<td data-testid={`name-${index}`}>{name}</td>
-							<td data-testid={`points-${index}`} className="numeric">{points}</td>
-							<td data-testid={`age-${index}`} className="numeric">{age}</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	);
+    <div className='text-center mt-50'>
+      <div>
+        <div>
+          {ROUTE_BUTTONS.map(({ id, name }) => (
+            <button data-testid={`route-${id}`} className='outlined' type='button' key={id} onClick={handleButtonClick}>
+              {name}
+            </button>
+          ))}
+        </div>
+        <Switch>
+					<Route path={`/:sortKey`}>
+						<LeaderBoardTable />
+					</Route>
+          <Route path='/'>
+            <LeaderBoardTable />
+          </Route>
+        </Switch>
+      </div>
+    </div>
+  )
 }
 
-export default LeaderBoard;
+export default withRouter(LeaderBoard)
